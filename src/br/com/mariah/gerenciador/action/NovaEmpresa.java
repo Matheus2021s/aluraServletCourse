@@ -1,4 +1,4 @@
-package br.com.mariah.gerenciador.servlet;
+package br.com.mariah.gerenciador.action;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -6,21 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.mariah.gerenciador.model.Banco;
 import br.com.mariah.gerenciador.model.Empresa;
 
-@WebServlet("/novaEmpresa")
-public class NovaEmpresaServlet extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;
+public class NovaEmpresa {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String nomeEmpresa = request.getParameter("nome");
 		String cnpj = request.getParameter("cnpj");
@@ -46,7 +40,5 @@ public class NovaEmpresaServlet extends HttpServlet {
 		
 		response.sendRedirect("listaEmpresas");
 		
-
 	}
-
 }

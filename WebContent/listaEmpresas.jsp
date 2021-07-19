@@ -3,8 +3,8 @@
 <%@page import="br.com.mariah.gerenciador.model.Empresa"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<c:url value="/removeEmpresa" var = "linkServletRemoveEmpresa"/>
-<c:url value="/editaEmpresa" var = "linkServletEditaEmpresa"/>
+<c:url value="/entrada" var = "linkServletRemoveEmpresa"/>
+<c:url value="/entrada" var = "linkServletEditaEmpresa"/>
 
 
 <!DOCTYPE html>
@@ -28,10 +28,10 @@
 				<td>${ empresa.cnpj }</td>
 				<td><fmt:formatDate value="${ empresa.dataAbertura }" pattern="dd/MM/yyyy" /></td>
 			<td>
-				 <a href="${linkServletEditaEmpresa}?id=${ empresa.id }"> Editar</a>
+				 <a href="${linkServletEditaEmpresa}?acao=EditaEmpresa&id=${ empresa.id }"> Editar</a>
 			</td>
 			<td>
-				 <a href="${linkServletRemoveEmpresa}?id=${ empresa.id }"> Excluir</a>
+				 <a href="${linkServletRemoveEmpresa}?acao=RemoveEmpresa&id=${ empresa.id }"> Excluir</a>
 			</td>
 			</tr>
 		</c:forEach>
