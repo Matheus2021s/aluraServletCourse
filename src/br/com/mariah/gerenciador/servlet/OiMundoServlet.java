@@ -23,7 +23,7 @@ public class OiMundoServlet extends HttpServlet {
 		writer.println("</body>");
 		writer.println("</html>");
 
-		System.out.println("O servlet foi chamad!");
+		System.out.println("O servlet foi chamado!");
 	}
 
 }
