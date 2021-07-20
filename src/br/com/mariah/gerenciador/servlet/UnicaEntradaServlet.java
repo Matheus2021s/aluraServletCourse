@@ -9,11 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.mariah.gerenciador.action.EditaEmpresa;
-import br.com.mariah.gerenciador.action.ListaEmpresas;
-import br.com.mariah.gerenciador.action.MostraDadosEmpresa;
-import br.com.mariah.gerenciador.action.NovaEmpresa;
-import br.com.mariah.gerenciador.action.RemoveEmpresa;
+import br.com.mariah.gerenciador.action.Acao;
 
 @WebServlet("/entrada")
 public class UnicaEntradaServlet extends HttpServlet {
@@ -23,40 +19,26 @@ public class UnicaEntradaServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
+		
+		String nomeClasse = "br.com.mariah.gerenciador.action."+acao;
 		String nome = null;
-
-		if (acao.equals("ListaEmpresas")) {
-
-			ListaEmpresas lista = new ListaEmpresas();
-			nome = lista.executa(request, response);
-
-		} else if (acao.equals("RemoveEmpresa")) {
-
-			RemoveEmpresa remove = new RemoveEmpresa();
-			nome = remove.executa(request, response);
-
-		} else if (acao.equals("MostrarDadosEmpresa")) {
-
-			MostraDadosEmpresa dadosEmpresa = new MostraDadosEmpresa();
-			nome = dadosEmpresa.executa(request, response);
-
-		} else if (acao.equals("EditaEmpresa")) {
-
-			EditaEmpresa edita = new EditaEmpresa();
-			nome = edita.executa(request, response);
-
-		} else if (acao.equals("NovaEmpresa")) {
-
-			NovaEmpresa novaEmpresa = new NovaEmpresa();
-			nome = novaEmpresa.executa(request, response);
-
+		try {
+			Class classe = Class.forName(nomeClasse);
+			Acao acaoExecutar = (Acao) classe.newInstance();
+			nome = acaoExecutar.executa(request, response);	
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
 		}
-
+		
 		String[] tipoEEndereco = nome.split(":");
 
 		if (tipoEEndereco[0].equals("foward")) {
 			
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher(tipoEEndereco[1]);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/"+ tipoEEndereco[1]);
 			requestDispatcher.forward(request, response);
 		
 		} else {
@@ -64,6 +46,39 @@ public class UnicaEntradaServlet extends HttpServlet {
 			response.sendRedirect(tipoEEndereco[1]);
 
 		}
+		
+//
+//		if (acao.equals("ListaEmpresas")) {
+//
+//			ListaEmpresas lista = new ListaEmpresas();
+//			nome = lista.executa(request, response);
+//
+//		} else if (acao.equals("RemoveEmpresa")) {
+//
+//			RemoveEmpresa remove = new RemoveEmpresa();
+//			nome = remove.executa(request, response);
+//
+//		} else if (acao.equals("MostrarDadosEmpresa")) {
+//
+//			MostraDadosEmpresa dadosEmpresa = new MostraDadosEmpresa();
+//			nome = dadosEmpresa.executa(request, response);
+//
+//		} else if (acao.equals("EditaEmpresa")) {
+//
+//			EditaEmpresa edita = new EditaEmpresa();
+//			nome = edita.executa(request, response);
+//
+//		} else if (acao.equals("NovaEmpresa")) {
+//
+//			NovaEmpresa novaEmpresa = new NovaEmpresa();
+//			nome = novaEmpresa.executa(request, response);
+//
+//		} else if (acao.equals("FormNovaEmpresa")) {
+//			FormularioNovaEmpresa foEmpresa = new FormularioNovaEmpresa();
+//			nome = foEmpresa.executa(request, response);
+//		}
+
+		
 
 	}
 

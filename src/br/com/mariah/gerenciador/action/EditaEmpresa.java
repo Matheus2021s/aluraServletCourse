@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.mariah.gerenciador.model.Banco;
 import br.com.mariah.gerenciador.model.Empresa;
 
-public class EditaEmpresa {
+public class EditaEmpresa implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
