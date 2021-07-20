@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix ="fmt" %>
-<c:url value="/editaEmpresa" var = "linkServletEditaEmpresa"/>
+<c:url value="/entrada?acao=EditaEmpresa" var = "linkServletEditaEmpresa"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cadastro de Nova Empresa</title>
+<title>Editar Empresa</title>
 </head>
 <body>
 	<form action="${linkServletEditaEmpresa}" method="post">

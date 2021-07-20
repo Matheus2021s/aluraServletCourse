@@ -59,8 +59,9 @@ public class Banco {
 		while(it.hasNext()) {
 			Empresa empresa = it.next();
 			if (empresa.getId().equals(emp.getId())) {
-				empresas.remove(empresa);
-				empresas.add(emp);
+				empresa.setNome(emp.getNome());
+				empresa.setCnpj(emp.getCnpj());
+				empresa.setDataAbertura(emp.getDataAbertura());
 			}
 		}
 	}

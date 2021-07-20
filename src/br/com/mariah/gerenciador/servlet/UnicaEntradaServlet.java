@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.mariah.gerenciador.action.EditaEmpresa;
 import br.com.mariah.gerenciador.action.ListaEmpresas;
 import br.com.mariah.gerenciador.action.MostraDadosEmpresa;
+import br.com.mariah.gerenciador.action.NovaEmpresa;
 import br.com.mariah.gerenciador.action.RemoveEmpresa;
 
 @WebServlet("/entrada")
@@ -41,6 +42,11 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 			EditaEmpresa edita = new EditaEmpresa();
 			edita.executa(request, response);
+
+		} else if (acao.equals("NovaEmpresa")) {
+
+			NovaEmpresa novaEmpresa = new NovaEmpresa();
+			novaEmpresa.executa(request, response);
 
 		}
 

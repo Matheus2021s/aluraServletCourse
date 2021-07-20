@@ -32,6 +32,6 @@ public class EditaEmpresa {
 		empresa.setCnpj(cnpj);
 		
 		banco.atualiza(empresa);
-		response.sendRedirect("listaEmpresas");
+		response.sendRedirect("entrada?acao=ListaEmpresas");
 	}
 }
