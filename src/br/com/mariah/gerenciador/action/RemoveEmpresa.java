@@ -9,12 +9,13 @@ import br.com.mariah.gerenciador.model.Banco;
 
 public class RemoveEmpresa {
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String id = request.getParameter( "id" );
 		
 		Banco banco = new Banco();
 		banco.remove( Long.parseLong( id ) );
 		
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";
+		
 	}
 }

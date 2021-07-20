@@ -13,7 +13,7 @@ import br.com.mariah.gerenciador.model.Empresa;
 
 public class EditaEmpresa {
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String nome =  request.getParameter("nome");
 		String dataAbertura = request.getParameter("dataAbertura");
@@ -32,6 +32,7 @@ public class EditaEmpresa {
 		empresa.setCnpj(cnpj);
 		
 		banco.atualiza(empresa);
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+
+		return "redirect:entrada?acao=ListaEmpresas";
 	}
 }

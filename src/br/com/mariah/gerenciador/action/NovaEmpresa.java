@@ -14,7 +14,7 @@ import br.com.mariah.gerenciador.model.Empresa;
 
 public class NovaEmpresa {
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String nomeEmpresa = request.getParameter("nome");
 		String cnpj = request.getParameter("cnpj");
@@ -38,7 +38,7 @@ public class NovaEmpresa {
 		
 		request.setAttribute("nomeEmpresa", empresa.getNome());
 		
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";
 		
 	}
 }

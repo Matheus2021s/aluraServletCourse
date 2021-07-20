@@ -2,6 +2,7 @@ package br.com.mariah.gerenciador.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,31 +23,45 @@ public class UnicaEntradaServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
+		String nome = null;
 
 		if (acao.equals("ListaEmpresas")) {
 
 			ListaEmpresas lista = new ListaEmpresas();
-			lista.executa(request, response);
+			nome = lista.executa(request, response);
 
 		} else if (acao.equals("RemoveEmpresa")) {
 
 			RemoveEmpresa remove = new RemoveEmpresa();
-			remove.executa(request, response);
+			nome = remove.executa(request, response);
 
 		} else if (acao.equals("MostrarDadosEmpresa")) {
 
 			MostraDadosEmpresa dadosEmpresa = new MostraDadosEmpresa();
-			dadosEmpresa.executa(request, response);
+			nome = dadosEmpresa.executa(request, response);
 
 		} else if (acao.equals("EditaEmpresa")) {
 
 			EditaEmpresa edita = new EditaEmpresa();
-			edita.executa(request, response);
+			nome = edita.executa(request, response);
 
 		} else if (acao.equals("NovaEmpresa")) {
 
 			NovaEmpresa novaEmpresa = new NovaEmpresa();
-			novaEmpresa.executa(request, response);
+			nome = novaEmpresa.executa(request, response);
+
+		}
+
+		String[] tipoEEndereco = nome.split(":");
+
+		if (tipoEEndereco[0].equals("foward")) {
+			
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(tipoEEndereco[1]);
+			requestDispatcher.forward(request, response);
+		
+		} else {
+			
+			response.sendRedirect(tipoEEndereco[1]);
 
 		}
 
