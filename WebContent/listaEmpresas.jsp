@@ -28,7 +28,7 @@
 				<td>${ empresa.cnpj }</td>
 				<td><fmt:formatDate value="${ empresa.dataAbertura }" pattern="dd/MM/yyyy" /></td>
 			<td>
-				 <a href="${linkServletEditaEmpresa}?acao=EditaEmpresa&id=${ empresa.id }"> Editar</a>
+				 <a href="${linkServletEditaEmpresa}?acao=MostrarDadosEmpresa&id=${ empresa.id }"> Editar</a>
 			</td>
 			<td>
 				 <a href="${linkServletRemoveEmpresa}?acao=RemoveEmpresa&id=${ empresa.id }"> Excluir</a>

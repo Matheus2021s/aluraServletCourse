@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,17 +18,6 @@ import br.com.mariah.gerenciador.model.Empresa;
 public class EditaEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		Banco banco = new Banco();
-		
-		Empresa empresa = banco.encontraPorId( Long.parseLong( id ) );
-		request.setAttribute("empresa", empresa);
-
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/editaEmpresa.jsp");
-		requestDispatcher.forward(request, response);
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
