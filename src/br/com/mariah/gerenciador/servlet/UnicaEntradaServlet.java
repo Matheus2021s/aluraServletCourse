@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.mariah.gerenciador.action.Acao;
 
@@ -17,8 +18,18 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String acao = request.getParameter("acao");
+		
+		HttpSession session = request.getSession();
+		
+		Boolean isUsuarioNaoAutorizado = session.getAttribute("usuario") == null;
+		Boolean isAcaoProtegida = !(acao.equals("Autenticar") || acao.equals("AutenticarForm"));
+		
+		if ( isAcaoProtegida && isUsuarioNaoAutorizado ) {
+			response.sendRedirect("entrada?acao=AutenticarForm");
+			return;
+		}
+		
 		
 		String nomeClasse = "br.com.mariah.gerenciador.action."+acao;
 		String nome = null;
@@ -46,38 +57,6 @@ public class UnicaEntradaServlet extends HttpServlet {
 			response.sendRedirect(tipoEEndereco[1]);
 
 		}
-		
-//
-//		if (acao.equals("ListaEmpresas")) {
-//
-//			ListaEmpresas lista = new ListaEmpresas();
-//			nome = lista.executa(request, response);
-//
-//		} else if (acao.equals("RemoveEmpresa")) {
-//
-//			RemoveEmpresa remove = new RemoveEmpresa();
-//			nome = remove.executa(request, response);
-//
-//		} else if (acao.equals("MostrarDadosEmpresa")) {
-//
-//			MostraDadosEmpresa dadosEmpresa = new MostraDadosEmpresa();
-//			nome = dadosEmpresa.executa(request, response);
-//
-//		} else if (acao.equals("EditaEmpresa")) {
-//
-//			EditaEmpresa edita = new EditaEmpresa();
-//			nome = edita.executa(request, response);
-//
-//		} else if (acao.equals("NovaEmpresa")) {
-//
-//			NovaEmpresa novaEmpresa = new NovaEmpresa();
-//			nome = novaEmpresa.executa(request, response);
-//
-//		} else if (acao.equals("FormNovaEmpresa")) {
-//			FormularioNovaEmpresa foEmpresa = new FormularioNovaEmpresa();
-//			nome = foEmpresa.executa(request, response);
-//		}
-
 		
 
 	}
