@@ -20,16 +20,16 @@ public class UnicaEntradaServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String acao = request.getParameter("acao");
 		
-		HttpSession session = request.getSession();
-		
-		Boolean isUsuarioNaoAutorizado = session.getAttribute("usuario") == null;
-		Boolean isAcaoProtegida = !(acao.equals("Autenticar") || acao.equals("AutenticarForm"));
-		
-		if ( isAcaoProtegida && isUsuarioNaoAutorizado ) {
-			response.sendRedirect("entrada?acao=AutenticarForm");
-			return;
-		}
-		
+//		HttpSession session = request.getSession();
+//		
+//		Boolean isUsuarioNaoAutorizado = session.getAttribute("usuario") == null;
+//		Boolean isAcaoProtegida = !(acao.equals("Autenticar") || acao.equals("AutenticarForm"));
+//		
+//		if ( isAcaoProtegida && isUsuarioNaoAutorizado ) {
+//			response.sendRedirect("entrada?acao=AutenticarForm");
+//			return;
+//		}
+//		
 		
 		String nomeClasse = "br.com.mariah.gerenciador.action."+acao;
 		String nome = null;
