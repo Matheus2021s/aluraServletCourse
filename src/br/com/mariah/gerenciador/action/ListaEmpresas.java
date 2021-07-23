@@ -12,12 +12,10 @@ import br.com.mariah.gerenciador.model.Empresa;
 
 public class ListaEmpresas implements Acao {
 
-		public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			Banco banco = new Banco();
-			
+		public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {			
+			Banco banco = new Banco();	
 			List<Empresa> empresas = banco.getEmpresas();
 			request.setAttribute("empresas", empresas);
-			
 			return "foward:listaEmpresas.jsp";
 
 		}
