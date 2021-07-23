@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.mariah.gerenciador.action.Acao;
 
-@WebServlet("/entrada")
+//@WebServlet("/entrada")
 public class UnicaEntradaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,32 +31,32 @@ public class UnicaEntradaServlet extends HttpServlet {
 //		}
 //		
 		
-		String nomeClasse = "br.com.mariah.gerenciador.action."+acao;
-		String nome = null;
-		try {
-			Class classe = Class.forName(nomeClasse);
-			Acao acaoExecutar = (Acao) classe.newInstance();
-			nome = acaoExecutar.executa(request, response);	
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		
-		String[] tipoEEndereco = nome.split(":");
-
-		if (tipoEEndereco[0].equals("foward")) {
-			
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/"+ tipoEEndereco[1]);
-			requestDispatcher.forward(request, response);
-		
-		} else {
-			
-			response.sendRedirect(tipoEEndereco[1]);
-
-		}
+//		String nomeClasse = "br.com.mariah.gerenciador.action."+acao;
+//		String nome = null;
+//		try {
+//			Class classe = Class.forName(nomeClasse);
+//			Acao acaoExecutar = (Acao) classe.newInstance();
+//			nome = acaoExecutar.executa(request, response);	
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (InstantiationException e) {
+//			e.printStackTrace();
+//		} catch (IllegalAccessException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		String[] tipoEEndereco = nome.split(":");
+//
+//		if (tipoEEndereco[0].equals("foward")) {
+//			
+//			RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/"+ tipoEEndereco[1]);
+//			requestDispatcher.forward(request, response);
+//		
+//		} else {
+//			
+//			response.sendRedirect(tipoEEndereco[1]);
+//
+//		}
 		
 
 	}
